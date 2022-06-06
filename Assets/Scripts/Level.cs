@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    public Cell start;
-    public Cell end;
-    public Level level;
-
     public static readonly Vector2[] DIRS = new[]
         {
             new Vector2(1, 0),
@@ -39,19 +35,6 @@ public class Level : MonoBehaviour
         cells = new List<Cell>(c);
     }
 
-    private void Update()
-    {
-        foreach (Cell cell in cells)
-        {
-            cell.GetComponent<Renderer>().material.color = Color.white;
-        }
-        AStarSearch path = new AStarSearch(this, start, end);
-        List<Cell> pathCells = Cell.ReconstructPath(start, end, this, path.cameFrom);
-        foreach (Cell cell in pathCells)
-        {
-            cell.GetComponent<Renderer>().material.color = Color.green;
-        }
-    }
     /// <summary>
     /// Поиск клеток по их координатам
     /// </summary>
