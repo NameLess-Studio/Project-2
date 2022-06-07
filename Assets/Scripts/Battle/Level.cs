@@ -28,9 +28,11 @@ public class Level : MonoBehaviour
     [Header("Генератор клеток")]
     public GameObject cellPrefab;
 
+    // Отступы по осям
     public Vector2 offsetX;
     public Vector2 offsetY;
 
+    // Координаты прямоугольника
     public Vector2Int start;
     public Vector2Int end;
 
