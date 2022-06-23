@@ -4,9 +4,7 @@ public class Unit : MonoBehaviour
 {
     public float _health; 
     public float _damage; // Количество здоровья и урона соответственно
-    [SerializeField] private Animation _atackAnim; // Анимация атаки
-    [SerializeField] private Animation _moveAnim; // Анимация перемещения
-    [SerializeField] private Animation _dieAnim; // Анимация смерти
+    [SerializeField] private Animator anim;
     [SerializeField] private Cell _current; // Клетка, на которой стоит игрок
 
     public void GoToCell(Cell cell)
@@ -28,13 +26,13 @@ public class Unit : MonoBehaviour
     public void Move(Cell cell)
     {
         transform.position = new Vector3(cell.transform.position.x, transform.position.y, cell.transform.position.z);  // Изменение позиции 
-        _moveAnim.Play(); // Анимация передвиджния
+        anim.SetTrigger("Walk"); // Анимация передвиджния
     }
 
     public bool Attack(Unit unit)
     {
         unit._health -= _damage; // Отнимаем здоровье у врага
-        _atackAnim.Play();
+        anim.SetTrigger("Attack");
 
         if (unit._health <= 0) // Если здоровье врага <= 0
         {
@@ -46,7 +44,7 @@ public class Unit : MonoBehaviour
 
     public void Die()
     {
-        _dieAnim.Play();
+        anim.SetTrigger("Die");
         Destroy(gameObject);
     }
 }
